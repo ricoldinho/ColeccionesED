@@ -1,24 +1,28 @@
-package edu.collections.patroniterator;
+package edu.collections.list;
 
 import edu.collections.clases.Alumno;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class Principal {
     public static void main(String[] args) {
 
-        ArrayList<Alumno> alumnos = new ArrayList<>();
+        List<Alumno> alumnos = new ArrayList<>();
         alumnos.add(new Alumno("11111111A", "Ana", "López", "ana.lopez@email.com",
                 LocalDate.of(2002, 3, 12), 7.5));
 
-        alumnos.add(new Alumno("22222222B", "Pedro", "Martín", "pedro.martin@email.com",
-                LocalDate.of(2001, 7, 25), 6.8));
-
         alumnos.add(new Alumno("33333333C", "Lucía", "Gómez", "lucia.gomez@email.com",
                 LocalDate.of(2003, 1, 5), 8.9));
+
+
+        Alumno alPedro = new Alumno("22222222B", "Pedro", "Martín", "pedro.martin@email.com",
+                LocalDate.of(2001, 7, 25), 6.8);
+        alumnos.add(alPedro);
+
 
         alumnos.add(new Alumno("44444444D", "Carlos", "Ruiz", "carlos.ruiz@email.com",
                 LocalDate.of(2000, 11, 30), 5.4));
@@ -40,14 +44,27 @@ public class Principal {
 
         alumnos.add(new Alumno("00000000J", "Sergio", "Navarro", "sergio.navarro@email.com",
                 LocalDate.of(2001, 2, 27), 6.7));
+        //add(int, Alumno) => OJO, metemos un alumno repetido, esa no podría ocurrir!!
+        alumnos.add(2,new Alumno("00000000J", "Sergio", "Navarro", "sergio.navarro@email.com",
+                LocalDate.of(2001, 2, 27), 6.7));
 
-        Iterator iterator = alumnos.iterator();
-        while(iterator.hasNext()){
-            Alumno alumno = (Alumno) iterator.next();
-            if(alumno.getDni().equals("77777777G")){
-                iterator.remove();
-            }
+
+        for (Alumno alumno : alumnos) {
+            System.out.println(alumno);
         }
+
+        System.out.println(alumnos.get(4));
+
+        alumnos.remove(2);
+        for (Alumno alumno : alumnos) {
+            System.out.println(alumno);
+        }
+
+        alumnos.remove(0);
+        System.out.println(alumnos.contains(new Alumno("11111111A", "Ana", "López", "ana.lopez@email.com",
+                LocalDate.of(2002, 3, 12), 7.5)));
+        System.out.println(alumnos.contains(alPedro));
+
 
     }
 }

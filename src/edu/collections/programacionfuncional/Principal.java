@@ -1,11 +1,10 @@
-package edu.collections.patroniterator;
+package edu.collections.programacionfuncional;
 
 import edu.collections.clases.Alumno;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class Principal {
     public static void main(String[] args) {
@@ -41,13 +40,12 @@ public class Principal {
         alumnos.add(new Alumno("00000000J", "Sergio", "Navarro", "sergio.navarro@email.com",
                 LocalDate.of(2001, 2, 27), 6.7));
 
-        Iterator iterator = alumnos.iterator();
-        while(iterator.hasNext()){
-            Alumno alumno = (Alumno) iterator.next();
-            if(alumno.getDni().equals("77777777G")){
-                iterator.remove();
-            }
+        alumnos.removeIf(alumno -> alumno.getDni().equals("77777777G"));
+        for (Alumno alumno : alumnos) {
+            System.out.println(alumno);
         }
+
+
 
     }
 }
